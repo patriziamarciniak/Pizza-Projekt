@@ -1,0 +1,49 @@
+
+<button class="btn1" ui-sref="contact">Kontakt</button>
+<button class="btn1" ui-sref="order" ng-click="addToServiceOrder()">Zamawiam</button>
+
+<!-- koszyk -->
+<div id="basketDiv">
+    <h4  ng-show="basket==false">Twój koszyk jest pusty</h4>
+    <table id="basketTable" ng-show="basket!=false">
+        <tr>
+            <td></td>
+            <td ><strong>Do zapłaty:</strong></td>
+            <td ><strong>{{ get_price()| currency : "zł "  }}</strong></td>
+        </tr>
+        <tr>
+            <td>Nr:</td>
+            <td>Nazwa:</td>
+            <td>Ilość:</td>
+            <td>Cena:</td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="pizza in basket">
+            <td>{{ basket.indexOf(pizza)+1 }}</td>
+            <td>{{ pizza.name }}</td>
+            <td>{{ pizza.price * pizza.quantity }}</td>
+            <td>{{ pizza.quantity }}</td>
+            <td>
+                <button class="btn2" ng-click="pizza.quantity=pizza.quantity+1">+</button>
+                <button class="btn2" ng-click="decrease_number(pizza)">-</button>
+                <button class="btn3" ng-click="remove_from_basket(pizza)">usuń</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- menu -->
+<table id="menuTable">
+    <tr ng-repeat="pizza in menu">
+        <td>{{ pizza.id }}</td>
+        <td>{{ pizza.name }}</td>
+        <td>
+            <p ng-repeat="ing in ingr" ng-if="pizza.ingredients.indexOf(ing.id) >=0">{{ ing.label }}</p>
+        </td>
+        <td>{{ pizza.price | currency : "zł " }}</td>
+        <td>
+            <input ng-model="pizza.quantity" ng-init="pizza.quantity=1" type="number"  name="pizzaQuantity" min="0" max="100" step="1" value="1" >
+            <button class='btn1' ng-click="add_to_basket(pizza)">Zamów</button>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,54 @@
+<!--Formularz-->
+
+<div>
+    <form name="clientForm" novalidate>
+
+        <h3>Uzupełnij swoje dane:</h3>
+        Podaj numer telefonu:<input type="text" name="phone" ng-model="client.number"  required="required"  />
+        <span ng-show="clientForm.$error.required" class="info-block">Musisz podać nr telefonu!</span>
+        <br />
+        Ulica :
+        <input type="text" name="street" ng-model="client.street" required="required" />
+        <span ng-show="clientForm.$error.required" class="info-block">Musisz podać ulicę!</span>
+        <br />
+        Nr domu: <input type="text" name="house" ng-model="client.house"  required="required" />
+        <span ng-show="clientForm.$error.required" class="info-block">Musisz podać nr domu!</span><br />
+        <label>Uwagi:</label><br />
+        <textarea rows="5" cols="70" type="text" ng-model="client.remarks" > </textarea><br />
+    </form>
+</div>
+
+<!--Zamówienie-->
+<div >
+    <h4 ng-show="order==false">Twój koszyk jest pusty, wróć do menu</h4>
+    <table ng-show="order!=false" class="yourOrder">
+        <tr>
+            <td> </td>
+            <td><strong>Twoje zamówienie:</strong></td>
+        </tr>
+        <tr>
+            <td>Nr:</td>
+            <td>Nazwa produktu:</td>
+            <td>Cena:</td>
+            <td>Ilość:</td>
+        </tr>
+        <tr ng-repeat="product in order">
+            <td>{{ order.indexOf(product)+1 }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.quantity * product.price }}</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><strong>Do zapłaty:</strong></td>
+            <td><strong>{{ price | currency : "zł " }}</strong></td>
+        </tr>
+    </table>
+</div>
+
+<div class="orderBtn">
+    <button class="whiteBtn"  ui-sref="main">Powrót</button>
+    <button  ng-show="clientForm.$valid"  class="whiteBtn"  ng-click="add_order(client)" >Zamawiam</button>
+</div>
+
