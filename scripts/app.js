@@ -12,9 +12,9 @@ var app = angular.module("myApp", ['ui.router']).config(function ($stateProvider
             controller: 'OrderCtrl',
             templateUrl: 'views/order.html'
         })
-        .state('status/:orderId', {
+        .state('order_status', {
 
-            url: '/order_status',
+            url: '/order:orderId',
             controller: 'OrderStatusCtrl',
             templateUrl: 'views/order_status.html'
         })

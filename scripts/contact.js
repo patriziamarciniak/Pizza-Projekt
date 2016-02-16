@@ -1,4 +1,4 @@
-angular.module("myApp").controller("ContactCtrl", function($scope,$http,Order) {
+angular.module("myApp").controller("ContactCtrl", function($scope,$http) {
 
     $http.get('/contact')
         .success(function(response){

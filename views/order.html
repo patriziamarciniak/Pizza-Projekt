@@ -4,15 +4,15 @@
     <form name="clientForm" novalidate>
 
         <h3>Uzupełnij swoje dane:</h3>
-        Podaj numer telefonu:<input type="text" name="phone" ng-model="client.number"  required="required"  />
+        Podaj numer telefonu:<input type="text" name="phone" ng-model="client.number" placeholder="999999999" required="required"  />
         <span ng-show="clientForm.$error.required" class="info-block">Musisz podać nr telefonu!</span>
         <br />
         Ulica :
-        <input type="text" name="street" ng-model="client.street" required="required" />
+        <input type="text" name="street" ng-model="client.street" placeholder="Solna" required="required" />
         <span ng-show="clientForm.$error.required" class="info-block">Musisz podać ulicę!</span>
         <br />
-        Nr domu: <input type="text" name="house" ng-model="client.house"  required="required" />
-        <span ng-show="clientForm.$error.required" class="info-block">Musisz podać nr domu!</span><br />
+        Nr domu: <input type="text" name="house" ng-model="client.house" placeholder="999" required="required" />
+        <span ng-show="clientForm.$error.required" class="info-block" >Musisz podać nr domu!</span><br />
         <label>Uwagi:</label><br />
         <textarea rows="5" cols="70" type="text" ng-model="client.remarks" > </textarea><br />
     </form>

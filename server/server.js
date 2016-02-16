@@ -67,6 +67,7 @@ app.get('/extras', function (req, res) {
     }, _.random(100, 1500));
 });
 
+
 /**
  * Checks if request is valid
  * @param   {object} order Requests body
@@ -86,10 +87,18 @@ function checkIsOrderValid(reqData) {
                     id: position.id
                 }));
 
+            console.log('isQuantityValid ' + isQuantityValid );
+            console.log('isValidEntity ' + isValidEntity );
+
             return isQuantityValid && isValidEntity;
         });
     }
 
+    console.log('isOrderAnArray ' + isOrderAnArray );
+    console.log('areOrderItemsValid ' + areOrderItemsValid );
+    console.log('areExtrasAnArray ' + areExtrasAnArray );
+    console.log('areExtrasValid ' + areExtrasValid );
+    console.log('isOrderInfoAnObject ' + isOrderInfoAnObject );
     return isOrderAnArray & areOrderItemsValid & areExtrasAnArray & areExtrasValid & isOrderInfoAnObject;
 }
 
@@ -139,6 +148,8 @@ app.post('/order', function (req, res) {
 
             i++;
         } else {
+
+
             res.status(500).send('Invalid order.');
             console.error('Invalid order!');
         }
